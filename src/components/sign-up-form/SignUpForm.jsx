@@ -8,6 +8,8 @@ import {
 import FormInput from "../input-form/FormInput";
 import { Form } from "react-router-dom";
 
+import "./SignUpForm.scss";
+
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -56,8 +58,8 @@ const SignUpForm = () => {
 
   return (
     <div>
-      <h1>Sign up with email and password</h1>
-      <form onSubmit={handleOnSubmit}>
+      <h2>Sign up with email and password</h2>
+      <form className="sign-up-container" onSubmit={handleOnSubmit}>
         <FormInput
           label={"Display Name"}
           type="text"
