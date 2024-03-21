@@ -6,7 +6,7 @@ import {
 } from "../../utils/firebase/firebase";
 
 import FormInput from "../input-form/FormInput";
-import { Form } from "react-router-dom";
+import Button from "../button/Button";
 
 import "./SignUpForm.scss";
 
@@ -92,7 +92,7 @@ const SignUpForm = () => {
           onChange={handleOnChange}
           required
         />
-        <button type="submit">Sign Up</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
