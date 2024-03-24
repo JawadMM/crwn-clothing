@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./SignInForm.scss";
 
 import {
@@ -6,6 +6,8 @@ import {
   signInAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase";
+
+import { userContext } from "../../context/user";
 
 import FormInput from "../input-form/FormInput";
 import Button from "../button/Button";
@@ -18,6 +20,8 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+
+  const { setCurrentUser } = useContext(userContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -32,11 +36,13 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      //console.log(response);
+
+      setCurrentUser(user);
+
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/invalid-credential") {
